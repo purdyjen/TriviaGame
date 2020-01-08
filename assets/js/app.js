@@ -232,26 +232,7 @@ $("#start").on("click", function() {
         $("#c").removeClass('active');
         $("#a").removeClass('active');
     });
-//check answers
-// $("#submit").on("click", function() {
-//     var currentQuestion = questionArray.shift();
-//     var userResponse = $(".active").val();
-//     var correctAnswer = currentQuestion.correctAnswer;
-//     var trivia = currentQuestion.trivia;
-//     if (userResponse === correctAnswer){
-//         console.log("Right!");
-//         $(".question-check").modal({ backdrop: "static" });
-//         $(".modal-title").text("Correct!");
-//         $(".modal-body").text(trivia);
-//         $(".question-check").modal("show");
-//     } else {
-//         console.log("Nope.")
-//         $(".question-check").modal({ backdrop: "static" });
-//         $(".modal-title").text("Sorry! The answer was " + correctAnswer.toUpperCase() + ".");
-//         $(".modal-body").text(trivia);
-//         $(".question-check").modal("show");
-//     }
-// });
+
 //call next question
 $("#next").on("click", function() {
     var currentQuestion = questionArray.shift();

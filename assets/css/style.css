@@ -10,11 +10,19 @@ body {
 }
 
 #game-container {
-    margin: auto;
+    margin: 40% auto;
     text-align: center;
     vertical-align: middle;
 }
 
 #question {
     color: #ffffff;
+}
+
+@media screen and (max-width: 640px) {
+
+body {
+    background-image: url('../images/star-wars-mobile.jpg');
+}
+
 }
