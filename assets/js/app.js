@@ -159,13 +159,30 @@ var questions = [
 //if correct, congrats and trivia
 //if wrong, correct answer and trivia
 
-var i = 0;
-i++
-var questionArray = questions.slice(i);
-var currentQuestion = questionArray.shift();
+
 $("#question").hide();
 $("#answers").hide();
 $("#submit").hide();
+var i = 0;
+i++;
+var questionArray = questions.slice(i);
+var currentQuestion = questionArray.shift();
+
+//start game (prevents need for page reload)
+$("#start").on("click", function() {
+    $("#start").hide();
+    var currentQuestion = questionArray.shift();
+    currentQuestion;
+    console.log(currentQuestion);
+    $("#question").text(currentQuestion.question);
+    $("#a").text(currentQuestion.answers.a);
+    $("#b").text(currentQuestion.answers.b);
+    $("#c").text(currentQuestion.answers.c);
+    $("#d").text(currentQuestion.answers.d);
+    $("#question").show();
+    $("#answers").show();
+    $("#submit").show();
+});
 
 //player selects answer
     //player selection becomes active and deactivates other answers
@@ -197,24 +214,9 @@ $("#submit").hide();
         $("#c").removeClass('active');
         $("#a").removeClass('active');
     });
-
-//start game (prevents need for page reload)
-$("#start").on("click", function() {
-    $("#start").hide();
-    currentQuestion;
-    console.log(currentQuestion);
-    $("#question").text(currentQuestion.question);
-    $("#a").text(currentQuestion.answers.a);
-    $("#b").text(currentQuestion.answers.b);
-    $("#c").text(currentQuestion.answers.c);
-    $("#d").text(currentQuestion.answers.d);
-    $("#question").show();
-    $("#answers").show();
-    $("#submit").show();
-});
-
 //check answers
 $("#submit").on("click", function() {
+    var currentQuestion = questionArray.shift();
     var userResponse = $(".active").val();
     var correctAnswer = currentQuestion.correctAnswer;
     var trivia = currentQuestion.trivia;
@@ -234,13 +236,13 @@ $("#submit").on("click", function() {
 });
 //call next question
 $("#next").on("click", function() {
-    currentQuestion;
+    var currentQuestion = questionArray.shift();
     console.log(currentQuestion);
     $("#question").text(currentQuestion.question);
-    $("#a").text(currentQuestion.answers.a);
-    $("#b").text(currentQuestion.answers.b);
-    $("#c").text(currentQuestion.answers.c);
-    $("#d").text(currentQuestion.answers.d);
+    $("#a").removeClass("active").text(currentQuestion.answers.a);
+    $("#b").removeClass("active").text(currentQuestion.answers.b);
+    $("#c").removeClass("active").text(currentQuestion.answers.c);
+    $("#d").removeClass("active").text(currentQuestion.answers.d);
     $("#question").show();
     $("#answers").show();
 });
