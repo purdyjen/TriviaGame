@@ -22,21 +22,43 @@
 <body>
 
 <div id="game-container">
+  <button id="start" class="btn btn-primary btn-lg">Start Game</button>
   <div id="question"></div>
   <br>
   <div id="answers">  
-  <button id="a" class="btn btn-primary">answer a</button>
-    <button id="b" class="btn btn-primary">answer b</button>
+  <button id="a" class="btn btn-primary btn-lg" value="a">answer a</button>
+    <button id="b" class="btn btn-primary btn-lg" value="b">answer b</button>
     <br>
-    <button id="c" class="btn btn-primary">answer c</button>
-    <button id="d" class="btn btn-primary">answer d</button>
+    <button id="c" class="btn btn-primary btn-lg" value="c">answer c</button>
+    <button id="d" class="btn btn-primary btn-lg" value="d">answer d</button>
     <br>
     <br>
-    <button id="submit" class="btn btn-primary">Submit</button>
+    <button id="submit" class="btn btn-primary btn-lg">Submit</button>
   </div>
 <br>
-  <button id="start" class="btn btn-primary">Start Game</button>
   
+  
+<!-- Modal -->
+<div class="question-check modal fade modal-sm" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <h5>Trivia Tidbit:</h5>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button id="next" type="button" class="btn btn-primary" data-dismiss="modal">Next Question</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <div id="results"></div>
 </div>
 </body>

@@ -159,45 +159,49 @@ var questions = [
 //if correct, congrats and trivia
 //if wrong, correct answer and trivia
 
-
-// function testQuestion (
-//     difficulty,
-//     question,
-//     answers,
-//     correctAnswer,
-//     trivia
-// ) {
-//     this.difficulty = difficulty;
-//     this.answers = question;
-//     this.answers = answers;
-//     this.correctAnswer = correctAnswer;
-//     this.trivia = trivia
-// }
-
-// var one = new testQuestion(
-//     "Easy",
-//     "Which of the three main heroes (Luke, Leia, and Han Solo) in the first Star Wars trilogy refused to sign a three-picture deal?",
-//     {
-//   a: "Mark Hamill",
-//   b: "Carrie Fisher",
-//   c: "Harrison Ford",
-//   d: "They all signed"
-//     },
-//     "c",
-//   "Having Han Solo frozen in carbonite was (at least in part) due to the fact that they were not sure that Harrison Ford would return for a third film. When the original Star Wars was made, Carrie Fisher and Mark Hammill were signed for a three picture deal, but Ford refused."
-// );
-
 var i = 0;
 i++
 var questionArray = questions.slice(i);
-
+var currentQuestion = questionArray.shift();
 $("#question").hide();
 $("#answers").hide();
 $("#submit").hide();
 
+//player selects answer
+    //player selection becomes active and deactivates other answers
+    
+    $("#a").on("click", function () {
+        $("#a").addClass('active');
+        $("#b").removeClass('active');
+        $("#c").removeClass('active');
+        $("#d").removeClass('active');
+    });
+    
+    $("#b").on("click", function () {
+        $("#b").addClass('active');
+        $("#a").removeClass('active');
+        $("#c").removeClass('active');
+        $("#d").removeClass('active');
+    });
+    
+    $("#c").on("click", function () {
+        $("#c").addClass('active');
+        $("#b").removeClass('active');
+        $("#a").removeClass('active');
+        $("#d").removeClass('active');
+    });
+    
+    $("#d").on("click", function () {
+        $("#d").addClass('active');
+        $("#b").removeClass('active');
+        $("#c").removeClass('active');
+        $("#a").removeClass('active');
+    });
+
+//start game (prevents need for page reload)
 $("#start").on("click", function() {
     $("#start").hide();
-    var currentQuestion = questionArray.shift();
+    currentQuestion;
     console.log(currentQuestion);
     $("#question").text(currentQuestion.question);
     $("#a").text(currentQuestion.answers.a);
@@ -209,9 +213,28 @@ $("#start").on("click", function() {
     $("#submit").show();
 });
 
+//check answers
 $("#submit").on("click", function() {
- 
-    var currentQuestion = questionArray.shift();
+    var userResponse = $(".active").val();
+    var correctAnswer = currentQuestion.correctAnswer;
+    var trivia = currentQuestion.trivia;
+    if (userResponse === correctAnswer){
+        console.log("Right!");
+        $(".question-check").modal({ backdrop: "static" });
+        $(".modal-title").text("Correct!");
+        $(".modal-body").text(trivia);
+        $(".question-check").modal("show");
+    } else {
+        console.log("Nope.")
+        $(".question-check").modal({ backdrop: "static" });
+        $(".modal-title").text("Sorry! The answer was " + correctAnswer.toUpperCase() + ".");
+        $(".modal-body").text(trivia);
+        $(".question-check").modal("show");
+    }
+});
+//call next question
+$("#next").on("click", function() {
+    currentQuestion;
     console.log(currentQuestion);
     $("#question").text(currentQuestion.question);
     $("#a").text(currentQuestion.answers.a);
@@ -221,5 +244,8 @@ $("#submit").on("click", function() {
     $("#question").show();
     $("#answers").show();
 });
+
+
+
 
 }); //doc ready closing tag
