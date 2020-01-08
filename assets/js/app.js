@@ -182,6 +182,24 @@ $("#start").on("click", function() {
     $("#question").show();
     $("#answers").show();
     $("#submit").show();
+    $("#submit").on("click", function() {
+        var userResponse = $(".active").val();
+        var correctAnswer = currentQuestion.correctAnswer;
+        var trivia = currentQuestion.trivia;
+        if (userResponse === correctAnswer){
+            console.log("Right!");
+            $(".question-check").modal({ backdrop: "static" });
+            $(".modal-title").text("Correct!");
+            $(".modal-body").text(trivia);
+            $(".question-check").modal("show");
+        } else {
+            console.log("Nope.")
+            $(".question-check").modal({ backdrop: "static" });
+            $(".modal-title").text("Sorry! The answer was " + correctAnswer.toUpperCase() + ".");
+            $(".modal-body").text(trivia);
+            $(".question-check").modal("show");
+        }
+    });
 });
 
 //player selects answer
@@ -215,25 +233,25 @@ $("#start").on("click", function() {
         $("#a").removeClass('active');
     });
 //check answers
-$("#submit").on("click", function() {
-    var currentQuestion = questionArray.shift();
-    var userResponse = $(".active").val();
-    var correctAnswer = currentQuestion.correctAnswer;
-    var trivia = currentQuestion.trivia;
-    if (userResponse === correctAnswer){
-        console.log("Right!");
-        $(".question-check").modal({ backdrop: "static" });
-        $(".modal-title").text("Correct!");
-        $(".modal-body").text(trivia);
-        $(".question-check").modal("show");
-    } else {
-        console.log("Nope.")
-        $(".question-check").modal({ backdrop: "static" });
-        $(".modal-title").text("Sorry! The answer was " + correctAnswer.toUpperCase() + ".");
-        $(".modal-body").text(trivia);
-        $(".question-check").modal("show");
-    }
-});
+// $("#submit").on("click", function() {
+//     var currentQuestion = questionArray.shift();
+//     var userResponse = $(".active").val();
+//     var correctAnswer = currentQuestion.correctAnswer;
+//     var trivia = currentQuestion.trivia;
+//     if (userResponse === correctAnswer){
+//         console.log("Right!");
+//         $(".question-check").modal({ backdrop: "static" });
+//         $(".modal-title").text("Correct!");
+//         $(".modal-body").text(trivia);
+//         $(".question-check").modal("show");
+//     } else {
+//         console.log("Nope.")
+//         $(".question-check").modal({ backdrop: "static" });
+//         $(".modal-title").text("Sorry! The answer was " + correctAnswer.toUpperCase() + ".");
+//         $(".modal-body").text(trivia);
+//         $(".question-check").modal("show");
+//     }
+// });
 //call next question
 $("#next").on("click", function() {
     var currentQuestion = questionArray.shift();
@@ -245,6 +263,25 @@ $("#next").on("click", function() {
     $("#d").removeClass("active").text(currentQuestion.answers.d);
     $("#question").show();
     $("#answers").show();
+    $("#submit").on("click", function() {
+       
+        var userResponse = $(".active").val();
+        var correctAnswer = currentQuestion.correctAnswer;
+        var trivia = currentQuestion.trivia;
+        if (userResponse === correctAnswer){
+            console.log("Right!");
+            $(".question-check").modal({ backdrop: "static" });
+            $(".modal-title").text("Correct!");
+            $(".modal-body").text(trivia);
+            $(".question-check").modal("show");
+        } else {
+            console.log("Nope.")
+            $(".question-check").modal({ backdrop: "static" });
+            $(".modal-title").text("Sorry! The answer was " + correctAnswer.toUpperCase() + ".");
+            $(".modal-body").text(trivia);
+            $(".question-check").modal("show");
+        }
+    });
 });
 
 
