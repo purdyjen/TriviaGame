@@ -169,7 +169,6 @@ $(document).ready(function() {
   //if correct, congrats and trivia
   //if wrong, correct answer and trivia
 
-  $("#timer").hide();
   $("#question").hide();
   $("#answers").hide();
   $("#submit").hide();
@@ -180,50 +179,16 @@ $(document).ready(function() {
 
   //timer function
 
-  function timer() {
-    setTimeout(myTimeout1, 1000);
-    setTimeout(myTimeout2, 2000);
-    setTimeout(myTimeout3, 3000);
-    setTimeout(myTimeout4, 4000);
-    setTimeout(myTimeout5, 5000);
-    setTimeout(myTimeout6, 6000);
-    setTimeout(myTimeout7, 7000);
-    setTimeout(myTimeout8, 8000);
-    setTimeout(myTimeout9, 9000);
-    setTimeout(myTimeout10, 10000);
-    setTimeout(timeOut, 11000);
-  }
-  function myTimeout1() {
-    $("#timer").text("Seconds Remaining: " + 10);
-  }
-  function myTimeout2() {
-    $("#timer").text("Seconds Remaining: " + 9);
-  }
-  function myTimeout3() {
-    $("#timer").text("Seconds Remaining: " + 8);
-  }
-  function myTimeout4() {
-    $("#timer").text("Seconds Remaining: " + 7);
-  }
-  function myTimeout5() {
-    $("#timer").text("Seconds Remaining: " + 6);
-  }
-  function myTimeout6() {
-    $("#timer").text("Seconds Remaining: " + 5);
-  }
-  function myTimeout7() {
-    $("#timer").text("Seconds Remaining: " + 4);
-  }
-  function myTimeout8() {
-    $("#timer").text("Seconds Remaining: " + 3);
-  }
-  function myTimeout9() {
-    $("#timer").text("Seconds Remaining: " + 2);
-  }
-  function myTimeout10() {
-    $("#timer").text("Seconds Remaining: " + 1);
-  }
-  function timeOut() {
+      function countdown() {
+      var seconds = 15000;
+      if (seconds > 0) {
+        seconds - 1000;
+        $("#timer").text("Seconds Remaining: " + seconds/1000);
+      } else {
+          countdown.reset()
+      }
+    }
+
       var userResponse = $(".active").val();
       var correctAnswer = currentQuestion.correctAnswer;
       var trivia = currentQuestion.trivia;
@@ -241,18 +206,13 @@ $(document).ready(function() {
         );
         $(".modal-body").text(trivia);
         $(".question-check").modal("show");
-      }
-      $("#timer").text("Seconds Remaining: " + 10);
-      stop(timer);
-  }
-
-                            
+      }                          
                             
   //start game (prevents need for page reload)
   $("#start").on("click", function() {
     $("#start").hide();
     var currentQuestion = questionArray.shift();
-    
+    setInterval(countdown, 1000);
     currentQuestion;
     console.log(currentQuestion);
     $("#question").text(currentQuestion.question);
@@ -260,16 +220,14 @@ $(document).ready(function() {
     $("#b").text("B: " + currentQuestion.answers.b);
     $("#c").text("C: " + currentQuestion.answers.c);
     $("#d").text("D: " + currentQuestion.answers.d);
-    $("#timer").show();
     $("#question").show();
     $("#answers").show();
     $("#submit").show();
-    timer();
-    console.log(timer);
     $("#submit").on("click", function() {
       var userResponse = $(".active").val();
       var correctAnswer = currentQuestion.correctAnswer;
       var trivia = currentQuestion.trivia;
+      setInterval(countdown, 1000);
       if (userResponse === correctAnswer) {
         console.log("Right!");
         $(".question-check").modal({ backdrop: "static" });
@@ -321,9 +279,7 @@ $(document).ready(function() {
 
   //call next question
   $("#next").on("click", function() {
-    stop(timer);
     var currentQuestion = questionArray.shift();
-    timer() 
     console.log(currentQuestion);
     $("#question").text(currentQuestion.question);
     $("#a")
@@ -340,9 +296,7 @@ $(document).ready(function() {
       .text("D: " + currentQuestion.answers.d);
     $("#question").show();
     $("#answers").show();
-    timer();
     $("#submit").on("click", function() {
-      stop(timer);
       var userResponse = $(".active").val();
       var correctAnswer = currentQuestion.correctAnswer;
       var trivia = currentQuestion.trivia;
