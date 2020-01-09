@@ -22,6 +22,10 @@ body {
     margin-top: 15px;
 }
 
+#points {
+    color: #ffffff;
+}
+
 #question {
     color: #ffffff;
     padding-top: 40px;

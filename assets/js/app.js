@@ -168,10 +168,11 @@ $(document).ready(function() {
   //30 sec timer
   //if correct, congrats and trivia
   //if wrong, correct answer and trivia
-
+  $("#points").hide();
   $("#question").hide();
   $("#answers").hide();
   $("#submit").hide();
+  $("#timer").hide();
   var i = 0;
   var questionArray = questions.slice(i);
   var currentQuestion = questionArray.shift();
@@ -179,7 +180,7 @@ $(document).ready(function() {
   var points = 0;
 
   //timer function
-  var seconds = 3000;
+  var seconds = 15000;
 
   function countdown() {
     
@@ -199,7 +200,7 @@ $(document).ready(function() {
             $(".modal-body").text(trivia);
             $(".question-check").modal("show");
             clearInterval(interval);
-            seconds = 3000;
+            seconds = 15000;
             points += currentQuestion.difficulty;
         console.log("Points: " + points);
           } else {
@@ -211,7 +212,7 @@ $(document).ready(function() {
             $(".modal-body").text(trivia);
             $(".question-check").modal("show");
             clearInterval(interval);
-            seconds = 3000;
+            seconds = 15000;
           }   
 }
    
@@ -230,6 +231,7 @@ $(document).ready(function() {
     $("#question").show();
     $("#answers").show();
     $("#submit").show();
+    $("#timer").show();
     $("#submit").on("click", function() {
       clearInterval(interval);
       var userResponse = $(".active").val();
@@ -289,11 +291,12 @@ $(document).ready(function() {
 
   //call next question
   $("#next").on("click", function() {
+    if (questionArray.length !== 0) {
     i++;
     var currentQuestion = questionArray.shift();
-    console.log(currentQuestion);
+    console.log(questionArray);    
     interval = setInterval(countdown, 1000);
-    seconds = 3000;
+    seconds = 15000;
     $("#question").text(currentQuestion.question);
     $("#a")
       .removeClass("active")
@@ -309,6 +312,13 @@ $(document).ready(function() {
       .text("D: " + currentQuestion.answers.d);
     $("#question").show();
     $("#answers").show();
+    } else {
+        $("#points").show().text("Points: " + points);
+        $("#question").hide();
+        $("#answers").hide();
+        $("#submit").hide();
+        $("#timer").hide();
+    }
     $("#submit").on("click", function() {
       var userResponse = $(".active").val();
       var correctAnswer = currentQuestion.correctAnswer;
@@ -331,5 +341,6 @@ $(document).ready(function() {
         $(".question-check").modal("show");
       }
     });
+    
   });
 }); //doc ready closing tag
