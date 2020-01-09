@@ -173,48 +173,55 @@ $(document).ready(function() {
   $("#answers").hide();
   $("#submit").hide();
   var i = 0;
-  i++;
   var questionArray = questions.slice(i);
   var currentQuestion = questionArray.shift();
+  var interval;
+  var points = 0;
 
   //timer function
+  var seconds = 3000;
 
-      function countdown() {
-      var seconds = 15000;
+  function countdown() {
+    
+    var questionArray = questions.slice(i);
+    var currentQuestion = questionArray.shift();
+    var userResponse = $(".active").val();
+    var correctAnswer = currentQuestion.correctAnswer;
+    var trivia = currentQuestion.trivia;
       if (seconds > 0) {
-        seconds - 1000;
+        seconds -= 1000;
         $("#timer").text("Seconds Remaining: " + seconds/1000);
-      } else {
-          countdown.reset()
-      }
-    }
+        console.log(seconds);
+      } else if (userResponse === correctAnswer) {
+            console.log("Right!");
+            $(".question-check").modal({ backdrop: "static" });
+            $(".modal-title").text("Correct!");
+            $(".modal-body").text(trivia);
+            $(".question-check").modal("show");
+            clearInterval(interval);
+            seconds = 3000;
+            points += currentQuestion.difficulty;
+        console.log("Points: " + points);
+          } else {
+            console.log("Nope.");
+            $(".question-check").modal({ backdrop: "static" });
+            $(".modal-title").text(
+              "Sorry! The answer was " + currentQuestion.showAnswer + "."
+            );
+            $(".modal-body").text(trivia);
+            $(".question-check").modal("show");
+            clearInterval(interval);
+            seconds = 3000;
+          }   
+}
+   
 
-      var userResponse = $(".active").val();
-      var correctAnswer = currentQuestion.correctAnswer;
-      var trivia = currentQuestion.trivia;
-      if (userResponse === correctAnswer) {
-        console.log("Right!");
-        $(".question-check").modal({ backdrop: "static" });
-        $(".modal-title").text("Correct!");
-        $(".modal-body").text(trivia);
-        $(".question-check").modal("show");
-      } else {
-        console.log("Nope.");
-        $(".question-check").modal({ backdrop: "static" });
-        $(".modal-title").text(
-          "Sorry! The answer was " + currentQuestion.showAnswer + "."
-        );
-        $(".modal-body").text(trivia);
-        $(".question-check").modal("show");
-      }                          
-                            
   //start game (prevents need for page reload)
   $("#start").on("click", function() {
     $("#start").hide();
+    var questionArray = questions.slice(i);
     var currentQuestion = questionArray.shift();
-    setInterval(countdown, 1000);
-    currentQuestion;
-    console.log(currentQuestion);
+    interval = setInterval(countdown, 1000);
     $("#question").text(currentQuestion.question);
     $("#a").text("A: " + currentQuestion.answers.a);
     $("#b").text("B: " + currentQuestion.answers.b);
@@ -224,16 +231,18 @@ $(document).ready(function() {
     $("#answers").show();
     $("#submit").show();
     $("#submit").on("click", function() {
+      clearInterval(interval);
       var userResponse = $(".active").val();
       var correctAnswer = currentQuestion.correctAnswer;
       var trivia = currentQuestion.trivia;
-      setInterval(countdown, 1000);
       if (userResponse === correctAnswer) {
         console.log("Right!");
         $(".question-check").modal({ backdrop: "static" });
         $(".modal-title").text("Correct!");
         $(".modal-body").text(trivia);
         $(".question-check").modal("show");
+        points += currentQuestion.difficulty;
+        console.log("Points: " + points);
       } else {
         console.log("Nope.");
         $(".question-check").modal({ backdrop: "static" });
@@ -242,6 +251,7 @@ $(document).ready(function() {
         );
         $(".modal-body").text(trivia);
         $(".question-check").modal("show");
+        console.log("Points: " + points);
       }
     });
   });
@@ -279,8 +289,11 @@ $(document).ready(function() {
 
   //call next question
   $("#next").on("click", function() {
+    i++;
     var currentQuestion = questionArray.shift();
     console.log(currentQuestion);
+    interval = setInterval(countdown, 1000);
+    seconds = 3000;
     $("#question").text(currentQuestion.question);
     $("#a")
       .removeClass("active")
@@ -306,6 +319,8 @@ $(document).ready(function() {
         $(".modal-title").text("Correct!");
         $(".modal-body").text(trivia);
         $(".question-check").modal("show");
+        points += currentQuestion.difficulty;
+        console.info("Points: " + points);
       } else {
         console.log("Nope.");
         $(".question-check").modal({ backdrop: "static" });
