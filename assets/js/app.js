@@ -179,15 +179,72 @@ $(document).ready(function() {
   var currentQuestion = questionArray.shift();
 
   //timer function
-  //   var timer = window.setInterval(countdown(), 1000);
 
-  //   function countdown() {
-  //     var seconds = 15000;
-  //     if (seconds > 0) {
-  //       seconds - 1000;
-  //       $("#timer").text("Seconds Remaining: " + seconds);
-  //     }
-  //   }
+  function timer() {
+    setTimeout(myTimeout1, 1000);
+    setTimeout(myTimeout2, 2000);
+    setTimeout(myTimeout3, 3000);
+    setTimeout(myTimeout4, 4000);
+    setTimeout(myTimeout5, 5000);
+    setTimeout(myTimeout6, 6000);
+    setTimeout(myTimeout7, 7000);
+    setTimeout(myTimeout8, 8000);
+    setTimeout(myTimeout9, 9000);
+    setTimeout(myTimeout10, 10000);
+    setTimeout(timeOut, 11000);
+  }
+  function myTimeout1() {
+    $("#timer").text("Seconds Remaining: " + 10);
+  }
+  function myTimeout2() {
+    $("#timer").text("Seconds Remaining: " + 9);
+  }
+  function myTimeout3() {
+    $("#timer").text("Seconds Remaining: " + 8);
+  }
+  function myTimeout4() {
+    $("#timer").text("Seconds Remaining: " + 7);
+  }
+  function myTimeout5() {
+    $("#timer").text("Seconds Remaining: " + 6);
+  }
+  function myTimeout6() {
+    $("#timer").text("Seconds Remaining: " + 5);
+  }
+  function myTimeout7() {
+    $("#timer").text("Seconds Remaining: " + 4);
+  }
+  function myTimeout8() {
+    $("#timer").text("Seconds Remaining: " + 3);
+  }
+  function myTimeout9() {
+    $("#timer").text("Seconds Remaining: " + 2);
+  }
+  function myTimeout10() {
+    $("#timer").text("Seconds Remaining: " + 1);
+  }
+  function timeOut() {
+      var userResponse = $(".active").val();
+      var correctAnswer = currentQuestion.correctAnswer;
+      var trivia = currentQuestion.trivia;
+      if (userResponse === correctAnswer) {
+        console.log("Right!");
+        $(".question-check").modal({ backdrop: "static" });
+        $(".modal-title").text("Correct!");
+        $(".modal-body").text(trivia);
+        $(".question-check").modal("show");
+      } else {
+        console.log("Nope.");
+        $(".question-check").modal({ backdrop: "static" });
+        $(".modal-title").text(
+          "Sorry! The answer was " + currentQuestion.showAnswer + "."
+        );
+        $(".modal-body").text(trivia);
+        $(".question-check").modal("show");
+      }
+      $("#timer").text("Seconds Remaining: " + 10);
+      stop(timer);
+  }
 
                             
                             
@@ -195,70 +252,7 @@ $(document).ready(function() {
   $("#start").on("click", function() {
     $("#start").hide();
     var currentQuestion = questionArray.shift();
-    function timer() {
-        setTimeout(myTimeout1, 1000);
-        setTimeout(myTimeout2, 2000);
-        setTimeout(myTimeout3, 3000);
-        setTimeout(myTimeout4, 4000);
-        setTimeout(myTimeout5, 5000);
-        setTimeout(myTimeout6, 6000);
-        setTimeout(myTimeout7, 7000);
-        setTimeout(myTimeout8, 8000);
-        setTimeout(myTimeout9, 9000);
-        setTimeout(myTimeout10, 10000);
-        setTimeout(timeOut, 11000);
-      }
-      function myTimeout1() {
-        $("#timer").text("Seconds Remaining: " + 10);
-      }
-      function myTimeout2() {
-        $("#timer").text("Seconds Remaining: " + 9);
-      }
-      function myTimeout3() {
-        $("#timer").text("Seconds Remaining: " + 8);
-      }
-      function myTimeout4() {
-        $("#timer").text("Seconds Remaining: " + 7);
-      }
-      function myTimeout5() {
-        $("#timer").text("Seconds Remaining: " + 6);
-      }
-      function myTimeout6() {
-        $("#timer").text("Seconds Remaining: " + 5);
-      }
-      function myTimeout7() {
-        $("#timer").text("Seconds Remaining: " + 4);
-      }
-      function myTimeout8() {
-        $("#timer").text("Seconds Remaining: " + 3);
-      }
-      function myTimeout9() {
-        $("#timer").text("Seconds Remaining: " + 2);
-      }
-      function myTimeout10() {
-        $("#timer").text("Seconds Remaining: " + 1);
-      }
-      function timeOut() {
-          var userResponse = $(".active").val();
-          var correctAnswer = currentQuestion.correctAnswer;
-          var trivia = currentQuestion.trivia;
-          if (userResponse === correctAnswer) {
-            console.log("Right!");
-            $(".question-check").modal({ backdrop: "static" });
-            $(".modal-title").text("Correct!");
-            $(".modal-body").text(trivia);
-            $(".question-check").modal("show");
-          } else {
-            console.log("Nope.");
-            $(".question-check").modal({ backdrop: "static" });
-            $(".modal-title").text(
-              "Sorry! The answer was " + currentQuestion.showAnswer + "."
-            );
-            $(".modal-body").text(trivia);
-            $(".question-check").modal("show");
-          }
-          $("#timer").text("Seconds Remaining: " + 10);
-      }
+    
     currentQuestion;
     console.log(currentQuestion);
     $("#question").text(currentQuestion.question);
@@ -327,71 +321,9 @@ $(document).ready(function() {
 
   //call next question
   $("#next").on("click", function() {
+    stop(timer);
     var currentQuestion = questionArray.shift();
-    function timer() {
-        setTimeout(myTimeout1, 1000);
-        setTimeout(myTimeout2, 2000);
-        setTimeout(myTimeout3, 3000);
-        setTimeout(myTimeout4, 4000);
-        setTimeout(myTimeout5, 5000);
-        setTimeout(myTimeout6, 6000);
-        setTimeout(myTimeout7, 7000);
-        setTimeout(myTimeout8, 8000);
-        setTimeout(myTimeout9, 9000);
-        setTimeout(myTimeout10, 10000);
-        setTimeout(timeOut, 11000);
-      }
-      function myTimeout1() {
-        $("#timer").text("Seconds Remaining: " + 10);
-      }
-      function myTimeout2() {
-        $("#timer").text("Seconds Remaining: " + 9);
-      }
-      function myTimeout3() {
-        $("#timer").text("Seconds Remaining: " + 8);
-      }
-      function myTimeout4() {
-        $("#timer").text("Seconds Remaining: " + 7);
-      }
-      function myTimeout5() {
-        $("#timer").text("Seconds Remaining: " + 6);
-      }
-      function myTimeout6() {
-        $("#timer").text("Seconds Remaining: " + 5);
-      }
-      function myTimeout7() {
-        $("#timer").text("Seconds Remaining: " + 4);
-      }
-      function myTimeout8() {
-        $("#timer").text("Seconds Remaining: " + 3);
-      }
-      function myTimeout9() {
-        $("#timer").text("Seconds Remaining: " + 2);
-      }
-      function myTimeout10() {
-        $("#timer").text("Seconds Remaining: " + 1);
-      }
-      function timeOut() {
-          var userResponse = $(".active").val();
-          var correctAnswer = currentQuestion.correctAnswer;
-          var trivia = currentQuestion.trivia;
-          if (userResponse === correctAnswer) {
-            console.log("Right!");
-            $(".question-check").modal({ backdrop: "static" });
-            $(".modal-title").text("Correct!");
-            $(".modal-body").text(trivia);
-            $(".question-check").modal("show");
-          } else {
-            console.log("Nope.");
-            $(".question-check").modal({ backdrop: "static" });
-            $(".modal-title").text(
-              "Sorry! The answer was " + currentQuestion.showAnswer + "."
-            );
-            $(".modal-body").text(trivia);
-            $(".question-check").modal("show");
-          }
-          $("#timer").text("Seconds Remaining: " + 10);
-      }
+    timer() 
     console.log(currentQuestion);
     $("#question").text(currentQuestion.question);
     $("#a")
@@ -410,7 +342,7 @@ $(document).ready(function() {
     $("#answers").show();
     timer();
     $("#submit").on("click", function() {
-      window.clearInterval(timer);
+      stop(timer);
       var userResponse = $(".active").val();
       var correctAnswer = currentQuestion.correctAnswer;
       var trivia = currentQuestion.trivia;
