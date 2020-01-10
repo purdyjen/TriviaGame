@@ -44,11 +44,40 @@ body {
 #c {
     margin-right: 5px;
 }
+#new {
+    margin-bottom: 30px;
+}
 
+#points {
+    font-size: x-large;
+    color: #ffffff;
+}
+
+#no-more {
+    color: #ffffff;
+}
+
+#results {
+    color: #ffffff;
+    
+}
 @media screen and (max-width: 640px) {
 
-body {
+body {                      
     background-image: url('../images/star-wars-mobile.jpg');
+}
+
+#points {
+    font-size: small;
+}
+
+#no-more {
+    color: #ffffff;
+    font-size: small;
+}
+
+#results{
+    font-size: x-small;
 }
 
 #game-container {
@@ -60,5 +89,6 @@ body {
 .btn-primary {
     font-size: small;
 }
+
 
 }
