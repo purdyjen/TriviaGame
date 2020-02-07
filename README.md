@@ -1,7 +1,8 @@
 # TriviaGame
 
-https://www.triviaquestionss.com/star-wars-trivia-question-and-answer/
+https://purdyjen.github.io/TriviaGame/
 
+https://www.triviaquestionss.com/star-wars-trivia-question-and-answer/ (request submitted, no response)
 usefultrivia.com/movie_trivia/star_wars_trivia_index.html (No contact information provided to request permission to use questions.)
 
 
