@@ -147,7 +147,7 @@ $(document).ready(function() {
         difficulty: 2,
         question: "\"In The Empire Strikes Back,\" what odds does C-3P0 give Han for successfully navigating the asteroid field?",
         answers: {
-            a: "3,720 t0 1",
+            a: "3,720 to 1",
             b: "720 to 1",
             c: "643,720 to 1",
             d: "43,720 to 1"
