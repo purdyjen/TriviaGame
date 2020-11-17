@@ -2,11 +2,15 @@
 
 https://purdyjen.github.io/TriviaGame/
 
+
+
+
+Question Sources:
 https://www.triviaquestionss.com/star-wars-trivia-question-and-answer/ (request submitted, no response)
-usefultrivia.com/movie_trivia/star_wars_trivia_index.html (No contact information provided to request permission to use questions.)
+https://www.usefultrivia.com/movie_trivia/star_wars_trivia_index.html (No contact information provided to request permission to use questions.)
 
 
-Images:
+Image Sources:
 https://i.redd.it/uyn4vsu8mmv21.jpg
 
 https://wallpaperaccess.com/star-wars
