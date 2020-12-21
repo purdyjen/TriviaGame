@@ -1,4 +1,4 @@
-# TriviaGame
+# Trivia Game
 
 Website: https://purdyjen.github.io/TriviaGame/
 
