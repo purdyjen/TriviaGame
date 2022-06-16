@@ -9,6 +9,13 @@ body {
     display: none;
 }
 
+.question-check {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
 #game-container {
     margin: auto;
     text-align: center;
